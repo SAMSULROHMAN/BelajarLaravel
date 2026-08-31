@@ -51,7 +51,15 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "Illuminate\\Foundation\\Composition\\AssetPublishes::determine",
             "@php artisan package:discover --ansi"
+        ],
+        "render-deploy": [
+            "composer install --no-dev --optimize-autoloader",
+            "php artisan config:clear",
+            "php artisan route:cache",
+            "php artisan view:cache",
+            "php artisan migrate --force"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
